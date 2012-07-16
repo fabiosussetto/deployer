@@ -1,0 +1,15 @@
+{% extends 'gae_deployer/base.html' %}
+{% load humanize %}
+
+{% block main %}
+<h2>Deployment detail</h2>
+
+<div class="detail">
+    <p><strong>Project:</strong></p>
+    <p>{{ object.project.name }}</p>
+    <p><strong>Stdout log:</strong></p>
+    <p>{{ object.stdout_log }}</p>
+    <p><strong>Stderr log:</strong></p>
+    <p>{{ object.stderr_log }}</p>
+</div>
+{% endblock %}

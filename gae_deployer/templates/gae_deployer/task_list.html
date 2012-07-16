@@ -1,0 +1,30 @@
+{% extends 'gae_deployer/base.html' %}
+{% load humanize %}
+
+{% block main %}
+<h2>Tasks</h2>
+<p>
+    <a href="{% url task-list %}" class="btn btn-primary">new Task</a>
+</p>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Type</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for task in object_list %}
+        <tr>
+            <td>{{ task.name }}</td>
+            <td>{{ task.description }}</td>
+            <td>{{ task.type }}</td>
+            <td><a class="btn" href="{% url task-edit pk=task.pk %}">Edit</a></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}

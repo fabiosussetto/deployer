@@ -1,0 +1,25 @@
+{% extends 'gae_deployer/base.html' %}
+
+{% block main %}
+<h2>Projects</h2>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Project name</th>
+            <th>Git Repo</th>
+            <th>Deply branch</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for project in object_list %}
+        <tr>
+            <td><a href="{% url edit-project pk=project.pk %}">{{ project.name }}</a></td>
+            <td>{{ project.git_repo_uri }}</td>
+            <td>{{ project.deployment_branch }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}

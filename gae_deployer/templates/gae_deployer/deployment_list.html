@@ -1,0 +1,38 @@
+{% extends 'gae_deployer/base.html' %}
+{% load humanize %}
+
+{% block main %}
+<h2>Deployments</h2>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Project</th>
+            <th>Started on</th>
+            <th>Finished on</th>
+            <th>Status</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for deployment in object_list %}
+        <tr>
+            <td>{{ deployment.project.name }}</td>
+            <td>{{ deployment.started_on|naturaltime }}</td>
+            <td>{{ deployment.finished_on|naturaltime }}</td>
+            <td>
+                {% if deployment.in_progress %}
+                    <span class="label label-info">In progress...</span>    
+                {% elif deployment.success %}
+                    <span class="label label-success">Success</span>
+                {% else %}
+                    <span class="label label-important">Error</span>
+                {% endif %}
+            </td>
+            <td><a class="btn" href="{% url deployment-detail pk=deployment.pk %}">Details</a></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}
